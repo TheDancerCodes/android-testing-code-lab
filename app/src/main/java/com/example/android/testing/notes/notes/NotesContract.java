@@ -27,6 +27,7 @@ import java.util.List;
  */
 public interface NotesContract {
 
+//    These are all functions that we expose from the View layer and make available to the Presentation Layer
     interface View {
 
         void setProgressIndicator(boolean active);
@@ -38,6 +39,9 @@ public interface NotesContract {
         void showNoteDetailUi(String noteId);
     }
 
+//   Describes the actions that can be started from the View.
+//   The view should not handle user interaction directly where it affects the model.
+//   Instead, it should forward interactions to the presenter.
     interface UserActionsListener {
 
         void loadNotes(boolean forceUpdate);

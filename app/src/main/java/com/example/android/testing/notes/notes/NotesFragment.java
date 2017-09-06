@@ -67,6 +67,9 @@ public class NotesFragment extends Fragment implements NotesContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mListAdapter = new NotesAdapter(new ArrayList<Note>(0), mItemListener);
+
+        // Using the Injection class to retrieve an instance of the notes repository.
+        // Using this class makes it easy to swap out the implementation during testing later on.
         mActionsListener = new NotesPresenter(Injection.provideNotesRepository(), this);
     }
 
@@ -111,6 +114,9 @@ public class NotesFragment extends Fragment implements NotesContract.View {
 
         fab.setImageResource(R.drawable.ic_add);
         fab.setOnClickListener(new View.OnClickListener() {
+
+            // Making a call when a click on the floating action button occurs to trigger
+            // the "Add Note" UI through the Presenter
             @Override
             public void onClick(View v) {
                 mActionsListener.addNewNote();
@@ -135,6 +141,8 @@ public class NotesFragment extends Fragment implements NotesContract.View {
 
     /**
      * Listener for clicks on notes in the RecyclerView.
+     *
+     * Asking the Presenter to display a specific note when it is clicked.
      */
     NoteItemListener mItemListener = new NoteItemListener() {
         @Override
