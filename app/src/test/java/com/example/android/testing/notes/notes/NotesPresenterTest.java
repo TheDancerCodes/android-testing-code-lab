@@ -72,16 +72,23 @@ public class NotesPresenterTest {
 
     @Test
     public void loadNotesFromRepositoryAndLoadIntoView() {
-        fail("Implement in step 6");
-//        // Given an initialized NotesPresenter with initialized notes
-//        // When loading of Notes is requested
-//        mNotesPresenter.loadNotes(true);
-//
-//        // Callback is captured and invoked with stubbed notes
-//        verify(mNotesRepository).getNotes(mLoadNotesCallbackCaptor.capture());
-//        mLoadNotesCallbackCaptor.getValue().onNotesLoaded(NOTES);
-//
-//        // Then progress indicator is hidden and notes are shown in UI
+
+        // Given an initialized NotesPresenter with initialized/ empty notes
+        // When loading of Notes is requested
+        mNotesPresenter.loadNotes(true);
+
+
+        // Callback is captured and invoked with stubbed notes
+        verify(mNotesRepository).getNotes(mLoadNotesCallbackCaptor.capture());
+        mLoadNotesCallbackCaptor.getValue().onNotesLoaded(NOTES);
+
+
+        // Then progress indicator is hidden and notes are shown in UI
+        // NB: We verify that the presenter has asked the view to hide the progress indicator
+        // and display the list of notes:
+        verify(mNotesView).setProgressIndicator(false);
+        verify(mNotesView).showNotes(NOTES);
+
 //        InOrder inOrder = Mockito.inOrder(mNotesView);
 //        inOrder.verify(mNotesView).setProgressIndicator(true);
 //        inOrder.verify(mNotesView).setProgressIndicator(false);
@@ -94,6 +101,8 @@ public class NotesPresenterTest {
         mNotesPresenter.addNewNote();
 
         // Then add note UI is shown
+        // NB: We can call verify(...) directly because we have added it as a static import:
+        // import static org.mockito.Mockito.verify;
         verify(mNotesView).showAddNote();
     }
 
