@@ -97,12 +97,11 @@ public class NotesScreenTest {
 
     @Test
     public void clickAddNoteButton_opensAddNoteUi() throws Exception {
-        fail("Implement step 7");
-//        // Click on the add note button
-//        onView(withId(R.id.fab_add_notes)).perform(click());
-//
-//        // Check if the add note screen is displayed
-//        onView(withId(R.id.add_note_title)).check(matches(isDisplayed()));
+        // Click on the add note button
+        onView(withId(R.id.fab_add_notes)).perform(click());
+
+        // Check if the add note screen is displayed
+        onView(withId(R.id.add_note_title)).check(matches(isDisplayed()));
     }
 
     @Test
