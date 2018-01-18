@@ -106,28 +106,31 @@ public class NotesScreenTest {
 
     @Test
     public void addNoteToNotesList() throws Exception {
-        fail("Implement step 7");
-//        String newNoteTitle = "Espresso";
-//        String newNoteDescription = "UI testing for Android";
-//
-//        // Click on the add note button
-//        onView(withId(R.id.fab_add_notes)).perform(click());
-//
-//        // Add note title and description
-//        // Type new note title
-//        onView(withId(R.id.add_note_title)).perform(typeText(newNoteTitle), closeSoftKeyboard());
-//        onView(withId(R.id.add_note_description)).perform(typeText(newNoteDescription),
-//                closeSoftKeyboard()); // Type new note description and close the keyboard
-//
-//        // Save the note
-//        onView(withId(R.id.fab_add_notes)).perform(click());
-//
-//        // Scroll notes list to added note, by finding its description
-//        onView(withId(R.id.notes_list)).perform(
-//                scrollTo(hasDescendant(withText(newNoteDescription))));
-//
-//        // Verify note is displayed on screen
-//        onView(withItemText(newNoteDescription)).check(matches(isDisplayed()));
+
+        // The test data we will be checking
+        String newNoteTitle = "Espresso";
+        String newNoteDescription = "UI testing for Android";
+
+        // Click on the add note button
+        onView(withId(R.id.fab_add_notes)).perform(click());
+
+        // Add note title and description
+        // Type new note title
+        onView(withId(R.id.add_note_title)).perform(typeText(newNoteTitle), closeSoftKeyboard());
+
+        // Type new note description and close the keyboard
+        onView(withId(R.id.add_note_description)).perform(typeText(newNoteDescription),
+                closeSoftKeyboard());
+
+        // Save the note
+        onView(withId(R.id.fab_add_notes)).perform(click());
+
+        // Scroll notes list to added note, by finding its description
+        onView(withId(R.id.notes_list)).perform(
+                scrollTo(hasDescendant(withText(newNoteDescription))));
+
+        // Verify note is displayed on screen
+        onView(withItemText(newNoteDescription)).check(matches(isDisplayed()));
     }
 
 }
